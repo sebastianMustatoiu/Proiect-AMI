@@ -355,7 +355,7 @@ Dar sunt eu""",
 cuvinte_fara_stopwords_lista = procesare_versuri_cu_stopwords(versuri)
 ngram_model = train_ngram_model(cuvinte_fara_stopwords_lista, 4)
 
-num_generated_lyrics = 20
+num_generated_lyrics = 1
 generated_lyrics_list = []
 
 for _ in range(num_generated_lyrics):
@@ -368,10 +368,9 @@ gen_versuri_procesate = procesare_versuri_fara_stopwords(generated_lyrics_list)
 gen_versuri_test = [" ".join(versuri) for versuri in gen_versuri_procesate]
 gen_genuri_pred = model.predict(gen_versuri_test)
 
-print("Genurile versurilor generate:")
+print("Genul versurilor generate:")
 print(gen_genuri_pred)
 
-# Generarea raportului de clasificare pentru versurile generate
 gen_genuri_test = ["manea"] * (num_generated_lyrics // 2) + ["trap"] * (num_generated_lyrics - num_generated_lyrics // 2)
 print("Raport de clasificare pentru identificarea genului muzical:")
 print(classification_report(gen_genuri_test, gen_genuri_pred, zero_division=0))
